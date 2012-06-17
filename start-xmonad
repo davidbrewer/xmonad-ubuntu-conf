@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# Identify the home of our gtkrc file, important for setting styles of 
+# gtk-based applications
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+
+# Load resources
+xrdb -merge .Xresources
+
+# Start compositing to support transparency
+xcompmgr -n &
+
+# Activate primary screen
+xrandr --output LVDS-1 --auto --primary
+
+# Activate any extra screens we find are active
+xrandr | grep 'VGA-1 connected' | ifne xrandr --output VGA-1 --auto --left-of LVDS-1
+xrandr | grep 'DP-1 connected' | ifne xrandr --output DP-1 --auto --left-of LVDS-1
+
+# Load backgrounds
+# To set your backgrounds, run nitrogren /path/to/images
+nitrogen --restore &
+
+# Set up an icon tray
+stalonetray \
+  --icon-gravity E \
+  --geometry 5x1-0+0 \
+  --background '#000000' \
+  --skip-taskbar \
+  --icon-size 24 \
+  --kludges force_icons_size \
+  --max-geometry 5x1-0+0 \
+  --window-strut none \
+&
+
+# Now lets put some things in the icon tray
+# Empathy chat client...
+empathy &
+
+# Remmina remote desktop connection client...
+remmina &
+
+# Network manager, so we don't have to choose wifi networks at the command line...
+if [ -x /usr/bin/nm-applet ] ; then
+   nm-applet --sm-disable &
+fi
+
+# Redshift, to save your tired eyes at night.
+gtk-redshift -l 45.60:122.60 &
+
+# App launcher, because we hate application menus.
+synapse -s &
+
+# Screen saver handling
+# xscreensaver -no-splash &
+
+# Printer handling
+system-config-printer-applet &
+
+# On login, we unlock our ssh keychain so we're not prompted for passphrases later.
+# We pipe /dev/null to ssh-add to make it realize it's not running in a terminal.
+# Otherwise, it won't launch the prompt.
+export SSH_ASKPASS="/usr/bin/ssh-askpass"
+cat /dev/null | ssh-add &
+
+# I disable the middle mouse button because otherwise I constantly accidentally
+# paste unwanted text in the middle of my code while scrolling. 
+# Note that the id of the mouse device may be different depending on which usb
+# port it is plugged into! To find it, use:
+# xinput list |grep 'id='
+# In the following command, the id is the first argument, the rest is the remapping.
+xinput set-button-map 10 1 0 3 4 5 6 7
+
+# Now, finally, start xmonad
+exec xmonad
+
