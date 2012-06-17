@@ -4,7 +4,7 @@
 # gtk-based applications
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
-# Load resources
+# Load X resources (fixes some font issues)
 xrdb -merge .Xresources
 
 # Start compositing to support transparency
@@ -34,8 +34,8 @@ stalonetray \
 &
 
 # Now lets put some things in the icon tray
-# Empathy chat client...
-empathy &
+# Empathy chat client (don't connect on launch)...
+empathy -h -n &
 
 # Remmina remote desktop connection client...
 remmina &
@@ -45,17 +45,14 @@ if [ -x /usr/bin/nm-applet ] ; then
    nm-applet --sm-disable &
 fi
 
+# Applet for managing print jobs from the tray...
+system-config-printer-applet &
+
 # Redshift, to save your tired eyes at night.
 gtk-redshift -l 45.60:122.60 &
 
 # App launcher, because we hate application menus.
 synapse -s &
-
-# Screen saver handling
-# xscreensaver -no-splash &
-
-# Printer handling
-system-config-printer-applet &
 
 # On login, we unlock our ssh keychain so we're not prompted for passphrases later.
 # We pipe /dev/null to ssh-add to make it realize it's not running in a terminal.

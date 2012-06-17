@@ -1,0 +1,10 @@
+# This file should be copied to /usr/share/xessions/xmonad.desktop
+# It assumes that anyone logging in to xmonad should have an
+# ~/.xmonad directory with a start-xmonad script in it.
+[Desktop Entry]
+Encoding=UTF-8
+Name=XMonad
+Comment=Lightweight tiling window manager
+Exec=/home/dbrewer/.xmonad/start-xmonad
+Icon=custom_xmonad_badge.png
+Type=XSession
