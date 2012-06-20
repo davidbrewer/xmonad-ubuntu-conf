@@ -5,6 +5,6 @@
 Encoding=UTF-8
 Name=XMonad
 Comment=Lightweight tiling window manager
-Exec=/home/dbrewer/.xmonad/start-xmonad
+Exec=.xmonad/start-xmonad
 Icon=custom_xmonad_badge.png
 Type=XSession
