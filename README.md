@@ -9,11 +9,33 @@ Overview
 Installation
 ------------
 
+### Checkout Repository ###
+
+### Short version ###
+
+I've provided a script which performs all the remaining operations lined out the installation instructions. If you choose to run this script, you should be able to skip ahead to the Configuration section.
+   
+     ~/.xmonad/install-xmonad
+
+If you prefer to perform these steps manually to understand what they are doing, read on.
+
+(TODO: implement the script.)
+
 ### Install packages ###
 
-### Install customized xmonad session ###
+This xmonad configuration uses a variety of different packages. Some of them are required for xmonad, others are not specific to xmonad but are core parts of the overall desktop configuration, and others are simply tools which I use frequently enough that my default configuration runs them on startup.
 
-TODO: figure out how to make desktop file refer to our xmonad start script no matter what the user's home directory is called.
+If you want to install the entire list of packages, you can run the following command:
+
+    sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome gtk-redshift thunar terminator remmina
+
+If you prefer to pick and choose, the following packages can be omitted while still maintaining the overall functionality:
+ * remmina
+ * thunar
+ * gtk-redshift
+ * ssh-askpass-gnome
+
+### Install customized xmonad session ###
 
 To launch our xmonad session, we want to be able to pick it from the normal list of sessions available in Ubuntu's login screen, which is called "Unity Greeter". To make our customized version of Xmonad show up in the list, you will need to copy the file xmonad.desktop to the location where the greeter expects to find definitions of all the available sessions. You might also want to back up the default xmonad desktop session in case you want to revert later on.
 
@@ -22,7 +44,7 @@ To launch our xmonad session, we want to be able to pick it from the normal list
 
 Ubuntu's packages do not include any icon for xmonad when showing it in the login screen. This means its icon defaults to a plain white circle. But, no worries... I've got you covered. Just copy the custom xmonadbadge into the appropriate location for a nice consistent login experience. 
 
-    sudo cp ~/.xmonad/custom_xmonad_badge.png /usr/share/unity-greeter
+    sudo cp ~/.xmonad/images/custom_xmonad_badge.png /usr/share/unity-greeter
 
 Configuration
 -------------
