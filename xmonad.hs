@@ -1,4 +1,3 @@
-import Control.OldException(catchDyn,try)
 import XMonad.Util.Run
 import Control.Concurrent
 import System.Cmd
