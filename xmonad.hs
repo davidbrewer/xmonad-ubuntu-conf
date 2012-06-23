@@ -1,40 +1,42 @@
-import XMonad.Util.Run
-import Control.Concurrent
-import System.Cmd
+{-
+  This is my xmonad configuration file.
+  There are many like it, but this one is mine.
+
+  Author:     David Brewer
+  Repository: https://github.com/davidbrewer/xmonad-ubuntu-conf
+-}
+
 import XMonad
-import XMonad.Hooks.DynamicLog
-import XMonad.Layout
 import XMonad.Layout.Grid
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.IM
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.NoBorders
-import Data.Ratio ((%))
-import XMonad.ManageHook
-import XMonad.Prompt
+import XMonad.Layout.Circle
+import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Util.EZConfig
+import XMonad.Util.Run
+import XMonad.Hooks.DynamicLog
 import XMonad.Actions.Plane
 import XMonad.Hooks.ManageDocks
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
-import XMonad.Layout.Circle
-import System.IO
-import XMonad.Layout.PerWorkspace (onWorkspace)
+import Data.Ratio ((%))
 
 main = do
   xmproc <- spawnPipe "/usr/bin/xmobar /home/dbrewer/.xmonad/xmobarrc"
   xmonad $ defaultConfig {
     focusedBorderColor = "Red"
   , terminal = "terminator"
-  , borderWidth        = 1
-  , manageHook         = manageHook defaultConfig <+> composeAll managementHooks <+> manageDocks
+  , borderWidth = 1
+  , manageHook = manageHook defaultConfig <+> composeAll managementHooks <+> manageDocks
   , logHook = dynamicLogWithPP $ xmobarPP { 
         ppOutput = hPutStrLn xmproc
        ,ppTitle = xmobarColor xmobarTitleColor "" . shorten 80
        ,ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "[" "]"
        ,ppVisible = xmobarColor xmobarVisibleWorkspaceColor "" . wrap "(" ")"
     }
-  , layoutHook         = myLayouts
+  , layoutHook = myLayouts
   , workspaces = myWorkspaces
   , modMask = myModMask
   }
