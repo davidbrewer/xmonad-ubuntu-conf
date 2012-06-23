@@ -7,7 +7,7 @@ Config { font = "xft:Ubuntu Mono-14"
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10 
                     , Run Network "wlan0" ["-L","0","-H","32","--normal","green","--high","red"] 10
-                    , Run Battery ["-t", "Bat: <left>%", "--", "-c", "energy_full"] 10
+                    , Run Battery ["-t", "Bat: <left>%", "--", "-c", "charge_full"] 10
                     , Run Com "/home/dbrewer/bin/get-volume" [] "myvolume" 10
                     , Run StdinReader
                     ]
