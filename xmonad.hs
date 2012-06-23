@@ -23,36 +23,33 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 import Data.Ratio ((%))
 
-main = do
-  xmproc <- spawnPipe "/usr/bin/xmobar /home/dbrewer/.xmonad/xmobarrc"
-  xmonad $ defaultConfig {
-    focusedBorderColor = "Red"
-  , terminal = "terminator"
-  , borderWidth = 1
-  , manageHook = manageHook defaultConfig <+> composeAll managementHooks <+> manageDocks
-  , logHook = dynamicLogWithPP $ xmobarPP { 
-        ppOutput = hPutStrLn xmproc
-       ,ppTitle = xmobarColor xmobarTitleColor "" . shorten 80
-       ,ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "[" "]"
-       ,ppVisible = xmobarColor xmobarVisibleWorkspaceColor "" . wrap "(" ")"
-    }
-  , layoutHook = myLayouts
-  , workspaces = myWorkspaces
-  , modMask = myModMask
-  }
-    `removeKeysP`     ["M-p"]
-    `additionalKeys` myKeys
 
--- Color of current window title in xmobar.
-xmobarTitleColor = "#eeeeee"
+{-
+  Xmonad configuration variables. These settings control some of the 
+  simpler parts of xmonad's behavior and are straightforward to tweak.
+-}
+xmFocusedBorderColor = "Red" -- color of focused border
+xmBorderWidth = 1
+xmTerminal = "terminator" -- which terminal software to use
+myModMask = mod4Mask -- changes the mod key to "super"
 
--- Color of current workspace in xmobar.
-xmobarCurrentWorkspaceColor = "#e6744c"
+{-
+  Xmobar configuration variables. These settings control the appearance 
+  of text which xmonad is sending to xmobar via the DynamicLog hook. 
+-}
+xmbTitleColor = "#eeeeee"  -- color of window title
+xmbTitleLength = 80 -- truncate window title to this length
+xmbCurrentWorkspaceColor = "#e6744c" -- color of active workspace
+xmbVisibleWorkspaceColor = "#c185a7" -- color of inactive workspace
+xmbCurrentWorkspaceLeft = "["
+xmbCurrentWorkspaceRight = "]"
+xmbVisibleWorkspaceLeft = "("
+xmbVisibleWorkspaceRight = ")"
 
--- Color of visible (but inactive) workspace in xmobar
-xmobarVisibleWorkspaceColor = "#c185a7"
+{-
+  Layout configuration.
+-}
 
-myModMask = mod4Mask
 defaultLayouts = avoidStruts (ResizableTall 1 (3/100) (1/2) [] ||| Mirror (ResizableTall 1 (3/100) (1/2) []) ||| Grid ||| ThreeColMid 1 (3/100) (3/4))
 
 chatLayout = avoidStruts(withIM (1%7) (Title "Contact List") Grid)
@@ -61,6 +58,22 @@ fullLayout = avoidStruts(noBorders Full)
 circleLayout = avoidStruts(Circle)
 
 myLayouts = onWorkspace "7:Chat" chatLayout $ onWorkspace "9:Pix" gimpLayout $ defaultLayouts ||| fullLayout ||| circleLayout
+
+{-
+  Workspace configuration.
+-}
+
+myWorkspaces =
+  [
+    "7:Chat",  "8:Dbg", "9:Pix",
+    "4:Docs",  "5:Dev", "6:Web",
+    "1:Term",  "2:Hub", "3:Mail",
+    "0:VM",    "Extr1", "Extr2"
+  ]
+
+{-
+  Management hooks.
+-}
 
 managementHooks :: [ManageHook]
 managementHooks = [
@@ -76,12 +89,26 @@ managementHooks = [
   , (className=? "Gimp-2.8") --> doF (W.shift "9:Pix")
   ]
 
-myWorkspaces =
+{-
+  Keyboard configuration.
+-}
+
+-- Non-numeric num pad keys, top to bottom
+numPadKeys =
   [
-    "7:Chat",  "8:Dbg", "9:Pix",
-    "4:Docs",  "5:Dev", "6:Web",
-    "1:Term",  "2:Hub", "3:Mail",
-    "0:VM",    "Extr1", "Extr2"
+    xK_KP_Home, xK_KP_Up, xK_KP_Page_Up
+    , xK_KP_Left, xK_KP_Begin,xK_KP_Right
+    , xK_KP_End, xK_KP_Down, xK_KP_Page_Down
+    , xK_KP_Insert, xK_KP_Delete, xK_KP_Enter
+  ]
+
+-- Number keys in same order as numpad keys
+numKeys =
+  [
+    xK_7, xK_8, xK_9
+    , xK_4, xK_5, xK_6
+    , xK_1, xK_2, xK_3
+    , xK_0, xK_minus, xK_equal
   ]
 
 myKeys =
@@ -109,22 +136,26 @@ myKeys =
       | (key, sc) <- zip [xK_w, xK_e, xK_r] [1,0,2] 
       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
--- Non-numeric num pad keys, top to bottom
-numPadKeys =
-  [
-    xK_KP_Home, xK_KP_Up, xK_KP_Page_Up
-    , xK_KP_Left, xK_KP_Begin,xK_KP_Right
-    , xK_KP_End, xK_KP_Down, xK_KP_Page_Down
-    , xK_KP_Insert, xK_KP_Delete, xK_KP_Enter
-  ]
+{-
+  Here we actually stitch together all the configuration settings
+  and run xmonad..
+-}
 
--- Number keys in same order as numpad keys
-numKeys =
-  [
-    xK_7, xK_8, xK_9
-    , xK_4, xK_5, xK_6
-    , xK_1, xK_2, xK_3
-    , xK_0, xK_minus, xK_equal
-  ]
-
-
+main = do
+  xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc"
+  xmonad $ defaultConfig {
+    focusedBorderColor = xmFocusedBorderColor
+  , terminal = xmTerminal
+  , borderWidth = xmBorderWidth
+  , manageHook = manageHook defaultConfig <+> composeAll managementHooks <+> manageDocks
+  , logHook = dynamicLogWithPP $ xmobarPP { 
+        ppOutput = hPutStrLn xmproc
+       ,ppTitle = xmobarColor xmbTitleColor "" . shorten xmbTitleLength
+       ,ppCurrent = xmobarColor xmbCurrentWorkspaceColor "" . wrap xmbCurrentWorkspaceLeft xmbCurrentWorkspaceRight
+       ,ppVisible = xmobarColor xmbVisibleWorkspaceColor "" . wrap xmbVisibleWorkspaceLeft xmbVisibleWorkspaceRight
+    }
+  , layoutHook = myLayouts
+  , workspaces = myWorkspaces
+  , modMask = myModMask
+  }
+    `additionalKeys` myKeys
