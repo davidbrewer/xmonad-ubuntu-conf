@@ -13,14 +13,13 @@ Installation
 
 ### Short version ###
 
-I've provided a script which performs all the remaining operations lined out the installation instructions. If you choose to run this script, you should be able to skip ahead to the Configuration section.
+I've provided a script which performs all the remaining operations lined out the installation instructions. PLEASE skim the rest of the installation section to see what the script does before running it. If you are happy with all the steps described, you can run the script as a shortcut. If there's anything you want to tweak during installation, you may be better off running the steps manually.
    
      ~/.xmonad/install-xmonad
 
 If you prefer to perform these steps manually to understand what they are doing, read on.
 
 (TODO: implement the script.)
-(TODO: figure out how to deal with gtkrc configuration in a non-destructive way)
 
 ### Install packages ###
 
@@ -45,6 +44,13 @@ To launch our xmonad session, we want to be able to pick it from the normal list
 Ubuntu's packages do not include any icon for xmonad when showing it in the login screen. This means its icon defaults to a plain white circle. But, no worries... I've got you covered. Just copy the custom xmonadbadge into the appropriate location for a nice consistent login experience. 
 
     sudo cp ~/.xmonad/images/custom_xmonad_badge.png /usr/share/unity-greeter
+
+### Make Gnome 2-based components less ugly ###
+
+If you don't give Gnome some hints about how it should look, anything still based on Gnome 2 is going to be styled using Gnome 2 defaults -- that is to say, ugly. I've provided a configuration file which makes some configuration changes that make things look better, at least if you like dark styling. If you have already tweaked your .gtkrc-2.0 file or otherwise prefer not to replace this file, you can skip these steps. Everything should still be functional.
+
+    mv ~/.gtkrc-2.0 ~/gtkrc-2.0.original
+    ln -s .xmonad/.gtkrc-2.0 ~/.gtkrc-2.0
 
 Configuration
 -------------
