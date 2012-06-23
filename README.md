@@ -20,6 +20,7 @@ I've provided a script which performs all the remaining operations lined out the
 If you prefer to perform these steps manually to understand what they are doing, read on.
 
 (TODO: implement the script.)
+(TODO: figure out how to deal with gtkrc configuration in a non-destructive way)
 
 ### Install packages ###
 
@@ -27,12 +28,11 @@ This xmonad configuration uses a variety of different packages. Some of them are
 
 If you want to install the entire list of packages, you can run the following command:
 
-    sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome gtk-redshift thunar terminator remmina
+    sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome thunar terminator remmina
 
 If you prefer to pick and choose, the following packages can be omitted while still maintaining the overall functionality:
  * remmina
  * thunar
- * gtk-redshift
  * ssh-askpass-gnome
 
 ### Install customized xmonad session ###
@@ -58,6 +58,8 @@ Configuration
 Other Notes
 -----------
 
+### GIMP 2.8 ###
+
 If you are a user of GIMP, you may find the GIMP experience in xmonad somewhat lacking while using version 2.6 (which is what Ubuntu 12.04 comes with by default). This is because xmonad tries to manage all your palettes as tiles which can lead to a somewhat confusing interface. However, with GIMP 2.8, single-window mode has been introduced. This is ideal for using GIMP under xmonad, so upgrading is highly recommended.
 
-
+### Video Drivers ###

@@ -48,9 +48,6 @@ fi
 # Applet for managing print jobs from the tray...
 system-config-printer-applet &
 
-# Redshift, to save your tired eyes at night.
-gtk-redshift -l 45.60:122.60 &
-
 # App launcher, because we hate application menus.
 synapse -s &
 
