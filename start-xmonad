@@ -38,7 +38,7 @@ stalonetray \
 empathy -h -n &
 
 # Remmina remote desktop connection client...
-remmina &
+remmina -i &
 
 # Network manager, so we don't have to choose wifi networks at the command line...
 if [ -x /usr/bin/nm-applet ] ; then
