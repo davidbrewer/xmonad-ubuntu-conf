@@ -181,6 +181,12 @@ myLayouts =
   to nonstandard keys which do not have names assigned by
   xmonad. That's because they are the volume and mute keys
   on my laptop, a Lenovo W520.
+
+  If you have special keys on your keyboard which you
+  want to bind to specific actions, you can use the "xev"
+  command-line tool to determine the code for a specific key.
+  Launch the command, then type the key in question and watch
+  the output.
 -}
 
 myKeyBindings = 
