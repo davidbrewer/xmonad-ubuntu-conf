@@ -254,13 +254,70 @@ The following commands involve quitting or restarting xmonad:
 Configuration
 -------------
 
-### Editing start-xmonad ###
+This section discusses making change to this xmonad configuration. There are no GUI tools for accomplishing this; everything is handled through configuration files. I have extensively commented all my configuration files and tried to make things as clear as possible; for the most part you should refer to the configuration files themselves for documentation. What I provide here is more like a map of where to start looking for specific pieces of functionality.
 
 ### Changing your wallpaper ###
 
+To change your wallpaper, locate a director which contains some images you would like to use for wallpaper.  Then run the following at the command line:
+
+    nitrogen /path/to/your/images
+
+You will be presented with a GUI interface for selecting your wallpaper.
+
+### Editing start-xmonad ###
+
+The `start-xmonad` file runs during the login process, BEFORE xmonad itself has run. It runs a number of configuration tools, and starts a variety of components used by the xmonad configuration.
+
+You should take a look at the `start-xmonad` file if you want to make any of the following kinds of changes:
+* you want to get multi-monitor support working properly and the default setup isn't working for you
+* you want to tweak the settings on the icon tray part of the status bar, perhaps to change its height or width, or to make room for more icons
+* you want to disable or change any of the following:
+  * compositing (support for transparency)
+  * background images 
+  * chat software
+  * remote desktop software
+  * network management software
+  * application launcher (synapse)
+  * ssh keychain unlocking prompt
+
+If you make changes to `start-xmonad`, the only way to see the changes is to log out of xmonad and log back in using `mod-shift-q`. This can make testing changes to this file a little tedious.
+
 ### Editing xmobarrc ###
 
+The `xmobarrc` file is used to configure the ovreall appearance of the status bar, as well as provide part of its content. You should consider editing it if you want to make any of the following kinds of changes:
+* you want to change the font or default colors used for the bar
+* you want to change the width or position of the bar (expect to also make changes to stalonetray in the `start-xmonad` file as well in this case
+* you want to change the contents or formatting of the system information and/or date which is displayed near the right side of the status bar
+
+You can see whether the changes you have made to `xmobarrc` have been effective by recompiling xmonad using `mod-q`. This typically happens very quickly. If you try this and your status bar disappears, it means you made a syntax error in your configuration file. Undo the change and hit `mod-q` again to confirm things are working again.
+
 ### Editing xmonad.hs ###
+
+The `xmonad.hs` file is the main xmonad configuration file. Actually, it's not really a configuration file, but a Haskell program. This can make its syntax a little daunting to grasp. 
+
+I have done my best to format the file in a comprehensible manner and provide extensive comments. Still, editing this file can be a little risky. It's best to make small changes and compile frequently (using `mod-q`) to test if your changes work. If you get an error message, simply undo your change and compile again.
+
+You should take a look at `xmonad.hs` if you want to:
+* change key bindings for xmonad commands
+* change the color or width of the border around windows
+* change the default terminal
+* configure the appearance of the workspace list, layout name, or window title parts of the status bar
+* rename the workspaces
+* modify the layout defaults, add new layouts, or remove layouts
+* set up "management hooks" which allow you to assign special treatment to certain windows (such as telling certain types of dialogs not to be tiled by xmonad, or sending certain programs to a specific workspace)
+
+### Editing get-volume ###
+
+The `get-volume` script is a small utility used by xmobar to display volume information in the status bar. I borrowed it completely unchanged from a blog post. In some cases, it may not work for your hardware and need to be modified.
+
+In particular I have noticed problems with machines that have more than one sound card. On my machine I was able to fix this by modifying one line of the script:
+
+  # I changed this first line of the script:
+  str=`amixer sget Master,0`
+
+  # so that instead it read like this:
+  str=`amixer -c 1 sget Master,0`
+
 
 Other Notes
 -----------
