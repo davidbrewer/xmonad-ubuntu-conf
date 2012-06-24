@@ -122,6 +122,7 @@ As you launch software, it will automatically be positioned on the screen follow
 Note that as you change your layout, the name of the current layout is displayed in the status bar, immediately after the list of workspaces.
 
 There are six main layouts I have provided in my configuration:
+
 1. **ResizableTall** has a large master pane on the left, and remaining windows tile on the right. By default each area takes up half the screen, but you can resize using keys defined in "Manipulating windows", below.
 2. **Mirror ResizableTall** is similar to the first layout, but the larger master pane is at the top, and the remaining windows tile at the bottom of the screen. By default each area takes up half the screen, but this layout can also be resized.
 3. **Grid** layout tries to equally distribute windows in the available space, increasing the number of columns and rows as necessary. The master pane is at top left, but does not get priority over other windows in any other way. Not a resizeable layout.
@@ -312,11 +313,11 @@ The `get-volume` script is a small utility used by xmobar to display volume info
 
 In particular I have noticed problems with machines that have more than one sound card. On my machine I was able to fix this by modifying one line of the script:
 
-  # I changed this first line of the script:
-  str=`amixer sget Master,0`
-
-  # so that instead it read like this:
-  str=`amixer -c 1 sget Master,0`
+    # I changed this first line of the script:
+    str=`amixer sget Master,0`
+    
+    # so that instead it read like this:
+    str=`amixer -c 1 sget Master,0`
 
 
 Other Notes
