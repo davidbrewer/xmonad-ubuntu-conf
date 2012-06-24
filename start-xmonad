@@ -32,6 +32,9 @@ xcompmgr -n &
 # edit this section to match the specific demands of your setup. The below
 # setup is for a Lenovo W520 laptop that sometimes has an external monitor
 # hooked up via either VGA or DVI, positioned to the left of the laptop.
+#
+# Note that you can run xrandr at the command line to get a list of your
+# connected screens and find out what names you should use to refer to them.
 
 # Activate primary screen 
 xrandr --output LVDS-1 --auto --primary
