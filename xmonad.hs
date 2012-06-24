@@ -331,7 +331,8 @@ main = do
   , workspaces = myWorkspaces
   , modMask = myModMask
   , startupHook = do
-      windows $ W.greedyView startupWorkspace 
+      windows $ W.greedyView startupWorkspace
+      spawn "~/.xmonad/startup-hook"
   , manageHook = manageHook defaultConfig 
       <+> composeAll myManagementHooks 
       <+> manageDocks

@@ -267,7 +267,7 @@ You will be presented with a GUI interface for selecting your wallpaper.
 
 ### Editing start-xmonad ###
 
-The `start-xmonad` file runs during the login process, BEFORE xmonad itself has run. It runs a number of configuration tools, and starts a variety of components used by the xmonad configuration.
+The `start-xmonad` file runs during the login process, BEFORE xmonad itself has run. It runs a number of configuration tools, and starts some components used by the xmonad configuration.
 
 You should take a look at the `start-xmonad` file if you want to make any of the following kinds of changes:
 * you want to get multi-monitor support working properly and the default setup isn't working for you
@@ -275,13 +275,21 @@ You should take a look at the `start-xmonad` file if you want to make any of the
 * you want to disable or change any of the following:
   * compositing (support for transparency)
   * background images 
-  * chat software
-  * remote desktop software
-  * network management software
-  * application launcher (synapse)
-  * ssh keychain unlocking prompt
 
 If you make changes to `start-xmonad`, the only way to see the changes is to log out of xmonad and log back in using `mod-shift-q`. This can make testing changes to this file a little tedious.
+
+### Editing startup-hook ###
+
+The `startup-hook` script runs immediately after xmonad is initialized, via the startupHook mechanism of xmonad itself. 
+
+You should take a look at editing the `startup-hook` script if you want to modify any of the software that is started by default, such as:
+* applicaiton launcher (synapse)
+* network management software
+* chat software
+* remote desktop software
+* ssh keychain unlocking prompt
+
+Note that by default I have commented out the ssh keychain unlocking prompt, assuming that this would be annoying when getting started with xmonad. If you are a heavy ssh user you might consider uncommenting that feature.
 
 ### Editing xmobarrc ###
 
