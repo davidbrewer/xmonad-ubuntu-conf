@@ -31,7 +31,6 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 import Data.Ratio ((%))
 
-
 {-
   Xmonad configuration variables. These settings control some of the 
   simpler parts of xmonad's behavior and are straightforward to tweak.
@@ -87,6 +86,7 @@ myWorkspaces =
     "0:VM",    "Extr1", "Extr2"
   ]
 
+startupWorkspace = "5:Dev"  -- which workspace do you want to be on after launch?
 
 {-
   Layout configuration. In this section we identify which xmonad
@@ -330,6 +330,8 @@ main = do
   , layoutHook = myLayouts
   , workspaces = myWorkspaces
   , modMask = myModMask
+  , startupHook = do
+      windows $ W.greedyView startupWorkspace 
   , manageHook = manageHook defaultConfig 
       <+> composeAll myManagementHooks 
       <+> manageDocks
