@@ -125,9 +125,9 @@ There are six main layouts I have provided in my configuration:
 
 1. **ResizableTall** has a large master pane on the left, and remaining windows tile on the right. By default each area takes up half the screen, but you can resize using keys defined in "Manipulating windows", below.
 2. **Mirror ResizableTall** is similar to the first layout, but the larger master pane is at the top, and the remaining windows tile at the bottom of the screen. By default each area takes up half the screen, but this layout can also be resized.
-3. **Grid** layout tries to equally distribute windows in the available space, increasing the number of columns and rows as necessary. The master pane is at top left, but does not get priority over other windows in any other way. Not a resizeable layout.
-4. **ThreeCol** layout puts the large master pane in the center of the screen taking up most of the available screen space. Remaining windows tile to both the left and right of the master pane. This layout is resizeable.
-5. **Full** layout makes every window full screen with no borders. When you cycle through the windows, as each window becomes active it will be brought to the front. 
+3. **Full** layout makes every window full screen with no borders. When you cycle through the windows, as each window becomes active it will be brought to the front. 
+4. **Grid** layout tries to equally distribute windows in the available space, increasing the number of columns and rows as necessary. The master pane is at top left, but does not get priority over other windows in any other way. Not a resizeable layout.
+5. **ThreeCol** layout puts the large master pane in the center of the screen taking up most of the available screen space. Remaining windows tile to both the left and right of the master pane. This layout is resizeable.
 6. **Circle** layout places the master pane in the center of the screen, with space on all sides. Remaining windows appear positioned in a circle around it, partially overlapping it. The focused window is brought to the front so you can see all of its contents. Not a resizable layout. 
 
 In addition to the six main layouts, there is also a special layout called **IM Grid**, which is only activated on the Chat workspace. See the Workspaces section for more information.

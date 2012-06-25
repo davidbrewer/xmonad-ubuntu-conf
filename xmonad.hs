@@ -116,6 +116,12 @@ defaultLayouts = avoidStruts(
   -- bottom of the screen. Can be resized as described above.
   ||| Mirror (ResizableTall 1 (3/100) (1/2) []) 
 
+  -- Full layout makes every window full screen. When you toggle the 
+  -- active window, it will bring the active window to the front.
+  -- The noBorders modifier gets rid of the border indicating the
+  -- active window, so it is truly full screen.
+  ||| noBorders Full
+
   -- Grid layout tries to equally distribute windows in the available
   -- space, increasing the number of columns and rows as necessary.
   -- Master window is at top left.
@@ -127,12 +133,6 @@ defaultLayouts = avoidStruts(
   -- right of the master window. You can resize using "super-h" and 
   -- "super-l".
   ||| ThreeColMid 1 (3/100) (3/4)
-
-  -- Full layout makes every window full screen. When you toggle the 
-  -- active window, it will bring the active window to the front.
-  -- The noBorders modifier gets rid of the border indicating the
-  -- active window, so it is truly full screen.
-  ||| noBorders Full
 
   -- Circle layout places the master window in the center of the screen. 
   -- Remaining windows appear in a circle around it
