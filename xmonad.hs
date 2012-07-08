@@ -104,7 +104,11 @@ startupWorkspace = "5:Dev"  -- which workspace do you want to be on after launch
 
 -- Define group of default layouts used on most screens, in the
 -- order they will appear.
-defaultLayouts = avoidStruts(
+-- "smartBorders" modifier makes it so the borders on windows only
+-- appear if there is more than one visible window. 
+-- "avoidStruts" modifier makes it so that the layout provides
+-- space for the status bar at the top of the screen.
+defaultLayouts = smartBorders(avoidStruts(
   -- ResizableTall layout has a large master window on the left,
   -- and remaining windows tile on the right. By default each area
   -- takes up half the screen, but you can resize using "super-h" and
@@ -118,9 +122,7 @@ defaultLayouts = avoidStruts(
 
   -- Full layout makes every window full screen. When you toggle the 
   -- active window, it will bring the active window to the front.
-  -- The noBorders modifier gets rid of the border indicating the
-  -- active window, so it is truly full screen.
-  ||| noBorders Full
+  ||| Full
 
   -- Grid layout tries to equally distribute windows in the available
   -- space, increasing the number of columns and rows as necessary.
@@ -136,7 +138,7 @@ defaultLayouts = avoidStruts(
 
   -- Circle layout places the master window in the center of the screen. 
   -- Remaining windows appear in a circle around it
-  ||| Circle)
+  ||| Circle))
 
 
 -- Here we define some layouts which will be assigned to specific 
@@ -156,7 +158,7 @@ chatLayout = avoidStruts(withIM (1%7) (Title myIMRosterTitle) Grid)
 -- master area, and then use this ThreeColMid layout to make the panels
 -- tile to the left and right of the image. If you use GIMP 2.8, you
 -- can use single-window mode and avoid this issue.
-gimpLayout = avoidStruts(ThreeColMid 1 (3/100) (3/4))
+gimpLayout = smartBorders(avoidStruts(ThreeColMid 1 (3/100) (3/4)))
 
 -- Here we combine our default layouts with our specific, workspace-locked 
 -- layouts.
