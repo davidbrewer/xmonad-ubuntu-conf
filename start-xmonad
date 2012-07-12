@@ -91,6 +91,11 @@ stalonetray \
   --window-strut none \
 &
 
+# Run the gnome-keyring-daemon to avoid issues you otherwise may encounter
+# when using gnome applications which expect access to the keyring, such
+# as Empathy. This prevents prompts you may otherwise get for invalid
+# certificates and the like.
+gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 
 # Now, finally, start xmonad
 exec xmonad
