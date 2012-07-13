@@ -28,6 +28,7 @@ import XMonad.Util.Run
 import XMonad.Hooks.DynamicLog
 import XMonad.Actions.Plane
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.UrgencyHook
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 import Data.Ratio ((%))
@@ -54,10 +55,13 @@ myTitleColor     = "#eeeeee"  -- color of window title
 myTitleLength    = 80         -- truncate window title to this length
 myCurrentWSColor = "#e6744c"  -- color of active workspace
 myVisibleWSColor = "#c185a7"  -- color of inactive workspace
+myUrgentWSColor  = "#cc0000"  -- color of workspace with 'urgent' window
 myCurrentWSLeft  = "["        -- wrap active workspace with these
 myCurrentWSRight = "]"
 myVisibleWSLeft  = "("        -- wrap inactive workspace with these
 myVisibleWSRight = ")"
+myUrgentWSLeft  = "{"         -- wrap urgent workspace with these
+myUrgentWSRight = "}"
 
 
 {-
@@ -198,6 +202,7 @@ myKeyBindings =
     , ((myModMask, xK_a), sendMessage MirrorShrink)
     , ((myModMask, xK_z), sendMessage MirrorExpand)
     , ((myModMask, xK_p), spawn "synapse")
+    , ((myModMask, xK_u), focusUrgent)
     , ((0, 0x1008FF12), spawn "amixer -q set Master toggle")
     , ((0, 0x1008FF11), spawn "amixer -q set Master 10%-")
     , ((0, 0x1008FF13), spawn "amixer -q set Master 10%+")
@@ -326,7 +331,7 @@ myKeys = myKeyBindings ++
 
 main = do
   xmproc <- spawnPipe "xmobar ~/.xmonad/xmobarrc"
-  xmonad $ defaultConfig {
+  xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
     focusedBorderColor = myFocusedBorderColor
   , normalBorderColor = myNormalBorderColor
   , terminal = myTerminal
@@ -348,6 +353,8 @@ main = do
         . wrap myCurrentWSLeft myCurrentWSRight
       , ppVisible = xmobarColor myVisibleWSColor ""
         . wrap myVisibleWSLeft myVisibleWSRight
+      , ppUrgent = xmobarColor myUrgentWSColor ""
+        . wrap myUrgentWSLeft myUrgentWSRight
     }
   }
     `additionalKeys` myKeys
