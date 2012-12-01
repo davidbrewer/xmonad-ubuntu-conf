@@ -15,6 +15,7 @@
 -}
 
 import XMonad
+import XMonad.Hooks.SetWMName
 import XMonad.Layout.Grid
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.IM
@@ -341,6 +342,7 @@ main = do
   , modMask = myModMask
   , handleEventHook = fullscreenEventHook
   , startupHook = do
+      setWMName "LG3D"
       windows $ W.greedyView startupWorkspace
       spawn "~/.xmonad/startup-hook"
   , manageHook = manageHook defaultConfig
