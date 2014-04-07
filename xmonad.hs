@@ -129,21 +129,21 @@ defaultLayouts = smartBorders(avoidStruts(
   -- active window, it will bring the active window to the front.
   ||| noBorders Full
 
-  -- Grid layout tries to equally distribute windows in the available
-  -- space, increasing the number of columns and rows as necessary.
-  -- Master window is at top left.
-  ||| Grid
-
   -- ThreeColMid layout puts the large master window in the center
   -- of the screen. As configured below, by default it takes of 3/4 of
   -- the available space. Remaining windows tile to both the left and
   -- right of the master window. You can resize using "super-h" and
   -- "super-l".
-  ||| ThreeColMid 1 (3/100) (3/4)
+  -- ||| ThreeColMid 1 (3/100) (3/4)
 
   -- Circle layout places the master window in the center of the screen.
   -- Remaining windows appear in a circle around it
-  ||| Circle))
+  -- ||| Circle
+
+  -- Grid layout tries to equally distribute windows in the available
+  -- space, increasing the number of columns and rows as necessary.
+  -- Master window is at top left.
+  ||| Grid))
 
 
 -- Here we define some layouts which will be assigned to specific
