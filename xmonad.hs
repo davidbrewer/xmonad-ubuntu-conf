@@ -44,7 +44,9 @@ myFocusedBorderColor = "#ff0000"      -- color of focused border
 myNormalBorderColor  = "#cccccc"      -- color of inactive border
 myBorderWidth        = 1              -- width of border around windows
 myTerminal           = "terminator"   -- which terminal software to use
-myIMRosterTitle      = "Contact List" -- title of roster on IM workspace
+myIMRosterTitle      = "Buddy List"   -- title of roster on IM workspace
+                                      -- use "Buddy List" for Pidgin, but
+                                      -- "Contact List" for Empathy
 
 
 {-
@@ -153,7 +155,7 @@ defaultLayouts = smartBorders(avoidStruts(
 -- up 1/8 of the screen vertically, and the remaining space contains
 -- chat windows which are tiled using the grid layout. The roster is
 -- identified using the myIMRosterTitle variable, and by default is
--- configured for Empathy, so if you're using something else you
+-- configured for Pidgin, so if you're using something else you
 -- will want to modify that variable.
 chatLayout = avoidStruts(withIM (1%7) (Title myIMRosterTitle) Grid)
 
