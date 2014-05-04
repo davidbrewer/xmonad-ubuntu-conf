@@ -53,12 +53,12 @@ Config {
       "-h", "green",
       "-l", "red"
     ] 10,
-    
+
     -- To get volume information, we run a custom bash script.
     -- This is because the built-in volume support in xmobar is disabled
     -- in Debian and derivatives like Ubuntu. 
-    Run Com "~/.xmonad/get-volume" [] "myvolume" 10,
-    
+    Run Com "/bin/bash" ["-c", "~/.xmonad/get-volume"] "myvolume" 10,
+
     -- This line tells xmobar to read input from stdin. That's how we
     -- get the information that xmonad is sending it for display.
     Run StdinReader
