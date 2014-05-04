@@ -109,7 +109,7 @@ When you start xmonad for the first time, you're not looking at much. You will s
 
 There are no menus for selecting programs to run. Everything is launched in one of two ways:
 * `mod-shift-enter`: launches a terminal window (Terminator). You can run other programs from the terminal.
-* `mod-alt-space`: launches a Synapse prompt. You can run any program by starting to type its name, and then hitting enter once Synapse has found the program you want. 
+* `ctrl-space`: launches a Synapse prompt. You can run any program by starting to type its name, and then hitting enter once Synapse has found the program you want. 
 
 ### The status bar
 
@@ -342,6 +342,10 @@ In particular I have noticed problems with machines that have more than one soun
 
 Other Notes
 -----------
+
+### Synapse Activation Key Bug ###
+
+As of this writing, the current version of Synapse has a bug which prevents you from changing the activation key. You can change it, but when you quit and restart Synapse or restart you computer it will revert to the default Ctrl-Space.
 
 ### GIMP 2.8 and Single Window Mode ###
 
