@@ -48,7 +48,6 @@ Config {
     Run Battery [
       "-t", "<acstatus>: <left>%", 
       "--", 
-      "-c", "charge_full",
       "-O", "AC",
       "-o", "Bat",
       "-h", "green",
