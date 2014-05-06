@@ -347,6 +347,19 @@ Other Notes
 
 As of this writing, the current version of Synapse has a bug which prevents you from changing the activation key. You can change it, but when you quit and restart Synapse or restart you computer it will revert to the default Ctrl-Space.
 
+### Preventing Nautilus From Showing The Desktop ###
+
+When you launch Nautilus (aka "Files") in order to browse the filesystem, it activates some parts of the Gnome desktop. For the most part this is fine, but one annoying side effect is that you may find your Gnome desktop showing up, complete with its background and icons for anything in your Desktop folder. Ugh! 
+
+Luckily, there is a way to prevent this. However, if you are still using Unity or Gnome as well as Xmonad, this change will cause your desktop to disappear when in those environments too, so be aware!
+
+You'll need to change some Gnome settings using a tool called `dconf-editor`. To install and launch the tool:
+
+    sudo apt-get install dconf-tools
+    dconf-editor
+
+Once you're in `dconf-editor`, navigate to this node: org -> gnome -> desktop -> background. Then uncheck the settings "draw background" and "show desktop icons".
+
 ### GIMP 2.8 and Single Window Mode ###
 
 If you are a user of GIMP, you may have found the GIMP experience in xmonad somewhat lacking while using versions before 2.8. This is because xmonad tries to manage all your palettes as tiles which can lead to a somewhat confusing interface. However, with GIMP 2.8 (the default version in Ubuntu 14.04), single-window mode has been introduced.
