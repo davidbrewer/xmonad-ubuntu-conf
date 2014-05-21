@@ -30,6 +30,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Actions.Plane
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
+import XMonad.Hooks.ICCCMFocus
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 import Data.Ratio ((%))
@@ -329,7 +330,7 @@ myKeys = myKeyBindings ++
 {-
   Here we actually stitch together all the configuration settings
   and run xmonad. We also spawn an instance of xmobar and pipe
-  content into it via the logHook..
+  content into it via the logHook.
 -}
 
 main = do
@@ -350,7 +351,7 @@ main = do
   , manageHook = manageHook defaultConfig
       <+> composeAll myManagementHooks
       <+> manageDocks
-  , logHook = dynamicLogWithPP $ xmobarPP {
+  , logHook = takeTopFocus <+> dynamicLogWithPP xmobarPP {
       ppOutput = hPutStrLn xmproc
       , ppTitle = xmobarColor myTitleColor "" . shorten myTitleLength
       , ppCurrent = xmobarColor myCurrentWSColor ""
