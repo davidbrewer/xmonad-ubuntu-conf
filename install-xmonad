@@ -1,11 +1,11 @@
 #!/bin/bash
 # 
-# Installation script which setup up an Ubuntu Precise machine to use this
+# Installation script which setup up an Ubuntu Trusty machine to use this
 # xmonad configuration. 
 #
 # WARNING!!! 
 # * This has only been tested on a limited number of machines running 
-#   Ubuntu 12.04 64-bit.
+#   Ubuntu 14.04 64-bit.
 # * This is not a sophisticated installation script by any stretch 
 #   of the imagination. 
 # * I take no responsibility if this overwrites any configuration settings 
