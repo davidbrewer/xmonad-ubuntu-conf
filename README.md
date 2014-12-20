@@ -53,7 +53,7 @@ The configuration uses an application launcher called Synapse. Synapse used to b
 
 If you want to add this PPA manually, run this command:
 
-    sudo apt-add-repository ppa:synapse-core/testing
+    sudo add-apt-repository ppa:synapse-core/testing
     sudo apt-get update
 
 ### Install packages ###
