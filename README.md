@@ -116,6 +116,7 @@ There are no menus for selecting programs to run. Everything is launched in one 
 Let's take a look at the status bar. Some of what's up there may not make much sense yet, but it will be useful to know about it as we go through the remaining sections of this guide.
 
 The status bar can be divided into 6 major zones.  Running from left to right we have:
+
 1. The **workspace list**, which contains a list of all the workspaces which currently contain any windows, plus the workspace we are currently viewing. The currently viewed workspace will be bracketed in square brackets and will be a different color from any inactive workspaces. For more on the concept of workspaces, see the Workspaces section below.
 2. The **current layout**, which displays the name of the layout which is applied to the currently viewed workspace.
 3. The **title area**, which shows the title of the currently focused window. It's up there to save the vertical space that would normally be consumed by title bars on windows.
