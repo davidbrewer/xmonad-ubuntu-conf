@@ -1,7 +1,9 @@
 xmonad-ubuntu-conf
 ==================
 
-My xmonad config for Ubuntu 14.04 and 12.04, including package list, config files, and instructions. If you're still on Ubuntu 12.04, make sure to use the "precise" branch. The master branch is currently for 14.04.
+My xmonad config for Ubuntu 16.04, including package list, config files, and instructions. If you're on a different Ubuntu LTS release, take a look at the different branches available to see if there is one for you. The master branch is typically for the newest LTS.
+
+*Warning:* this is not yet thoroughly tested. I was pleasantly surprised to find I didn't really need to change things much for Xenial -- we'll see if anything surfaces after I've used it for a while!
 
 Overview
 --------
@@ -34,8 +36,7 @@ Finally, this whole process is intended for someone who likes to mess with their
 
 ### Checkout repository ###
 
-
-As your first step, you should check out this github repository or download an archive of the files. If you're still on Ubuntu 12.04, make sure to use the "precise" branch. The master branch is currently for 14.04.
+As your first step, you should check out this github repository or download an archive of the files. The master branch is currently for 16.04; there are separate branches for older LTS releases of Ubuntu.
 
 The contents of the repository should be placed in your home directory in a folder called ".xmonad". Note that if you have already installed xmonad, this directory will already exist! If you want to be able to revert to your existing configuration, you should rename this directory to something like ".xmonad-original".
 
@@ -46,15 +47,6 @@ I've provided a script which performs all the remaining operations lined out the
      ~/.xmonad/install-xmonad
 
 If you prefer to perform these steps manually to understand what they are doing, read on.
-
-### Add Synapse PPA ###
-
-The configuration uses an application launcher called Synapse. Synapse used to be in the Ubuntu repositories as of 12.04 but is no longer there in 14.04. Apparently it was not updated to work with the appropriate versions of the libraries it uses in time for the release. Therefore, in order to keep synapse working, the install script adds a PPA with development builds of Synapse. If this situation changes I will update the installer to use a more stable source for this package. 
-
-If you want to add this PPA manually, run this command:
-
-    sudo apt-add-repository ppa:synapse-core/testing
-    sudo apt-get update
 
 ### Install packages ###
 

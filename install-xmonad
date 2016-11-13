@@ -1,11 +1,11 @@
 #!/bin/bash
 # 
-# Installation script which setup up an Ubuntu Trusty machine to use this
+# Installation script which setup up an Ubuntu Xenial machine to use this
 # xmonad configuration. 
 #
 # WARNING!!! 
 # * This has only been tested on a limited number of machines running 
-#   Ubuntu 14.04 64-bit.
+#   Ubuntu 16.04 64-bit.
 # * This is not a sophisticated installation script by any stretch 
 #   of the imagination. 
 # * I take no responsibility if this overwrites any configuration settings 
@@ -16,10 +16,6 @@
 # https://github.com/davidbrewer/xmonad-ubuntu-conf
 # 
 # Author: David Brewer
-
-echo "Adding PPA to allow install of Synapse on Trusty"
-sudo apt-add-repository ppa:synapse-core/testing
-sudo apt-get update
 
 echo "Installing required packages..."
 sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils consolekit synapse ssh-askpass-gnome thunar terminator remmina
