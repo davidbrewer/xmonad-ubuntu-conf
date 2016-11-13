@@ -1,7 +1,7 @@
 xmonad-ubuntu-conf
 ==================
 
-My xmonad config for Ubuntu 12.04, including package list, config files, and instructions.
+My xmonad config for Ubuntu 12.04, including package list, config files, and instructions. If you're on a different Ubuntu LTS release, take a look at the different branches available to see if there is one for you. The master branch is typically for the newest LTS.
 
 Overview
 --------
