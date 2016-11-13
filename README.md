@@ -1,7 +1,7 @@
 xmonad-ubuntu-conf
 ==================
 
-My xmonad config for Ubuntu 14.04 and 12.04, including package list, config files, and instructions. If you're still on Ubuntu 12.04, make sure to use the "precise" branch. The master branch is currently for 14.04.
+My xmonad config for Ubuntu 14.04, including package list, config files, and instructions. If you're on a different Ubuntu LTS release, take a look at the different branches available to see if there is one for you. The master branch is typically for the newest LTS.
 
 Overview
 --------
