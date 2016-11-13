@@ -3,14 +3,14 @@ xmonad-ubuntu-conf
 
 My xmonad config for Ubuntu 16.04, including package list, config files, and instructions. If you're on a different Ubuntu LTS release, take a look at the different branches available to see if there is one for you. The master branch is typically for the newest LTS.
 
-*Warning:* this is not yet thoroughly tested. I was pleasantly surprised to find I didn't really need to change things much for Xenial -- we'll see if anything surfaces after I've used it for a while!
+**Warning**: this is not yet thoroughly tested on 16.04. I was pleasantly surprised to find I didn't really need to change things much for Xenial -- we'll see if anything surfaces after I've used it for a while!
 
 Overview
 --------
 
 What you're looking at is my personal xmonad configuration setup, heavily commented and organized as clearly as I could manage.
 
-I have been using some form of this setup on a daily basis for over three years now in my work as a web developer. An xmonad configuration usually ends up being a very individualized thing, but I thought it would be valuable to share this as a starting point for people new to xmonad. I know that when I was starting with xmonad I found reading other people's configuration files the best way to learn. I hope you will find this equally helpful.
+I have been using some form of this setup on a daily basis for over five years now in my work as a web developer. An xmonad configuration usually ends up being a very individualized thing, but I thought it would be valuable to share this as a starting point for people new to xmonad. I know that when I was starting with xmonad I found reading other people's configuration files the best way to learn. I hope you will find this equally helpful.
 
 This configuration has the following features and properties:
 * Lightweight standalone configuration, not intended to be run inside Gnome or XFCE.
