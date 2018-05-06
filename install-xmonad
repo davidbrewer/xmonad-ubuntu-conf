@@ -5,7 +5,7 @@
 #
 # WARNING!!! 
 # * This has only been tested on a limited number of machines running 
-#   Ubuntu 16.04 64-bit.
+#   Ubuntu 18.04 64-bit.
 # * This is not a sophisticated installation script by any stretch 
 #   of the imagination. 
 # * I take no responsibility if this overwrites any configuration settings 
@@ -21,7 +21,9 @@ echo "Installing required packages..."
 sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome
 
 echo "Creating xmonad xsession configuration..."
-sudo mv /usr/share/xsessions/xmonad.desktop /usr/share/xsessions/xmonad.desktop.original
+if [ -f "/usr/share/xsessions/xmonad.desktop" ] ; then
+  sudo mv -n /usr/share/xsessions/xmonad.desktop /usr/share/xsessions/xmonad.desktop.original
+fi
 sudo cp ~/.xmonad/xmonad.desktop /usr/share/xsessions
 sudo chmod a+r /usr/share/xsessions/xmonad.desktop
 
@@ -32,6 +34,8 @@ if [ -d "/usr/share/unity-greeter" ] ; then
 fi
 
 echo "Linking to customized gnome 2 configuration..."
-mv ~/.gtkrc-2.0 ~/gtkrc-2.0.original
+if [ -f "~/.gtkrc-2.0" ] ; then
+  mv -n ~/.gtkrc-2.0 ~/gtkrc-2.0.original
+fi
 ln -s .xmonad/.gtkrc-2.0 ~/.gtkrc-2.0
 
