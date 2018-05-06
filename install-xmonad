@@ -18,14 +18,18 @@
 # Author: David Brewer
 
 echo "Installing required packages..."
-sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils consolekit synapse ssh-askpass-gnome thunar terminator remmina
+sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome
 
 echo "Creating xmonad xsession configuration..."
 sudo mv /usr/share/xsessions/xmonad.desktop /usr/share/xsessions/xmonad.desktop.original
 sudo cp ~/.xmonad/xmonad.desktop /usr/share/xsessions
 sudo chmod a+r /usr/share/xsessions/xmonad.desktop
-sudo cp ~/.xmonad/images/custom_xmonad_badge.png /usr/share/unity-greeter
-sudo chmod a+r /usr/share/unity-greeter/custom_xmonad_badge.png
+
+# Copy our custom Xmonad greeter badge into place, but only if we're using Unity Greeter
+if [ -d "/usr/share/unity-greeter" ] ; then
+  sudo cp ~/.xmonad/images/custom_xmonad_badge.png /usr/share/unity-greeter
+  sudo chmod a+r /usr/share/unity-greeter/custom_xmonad_badge.png
+fi
 
 echo "Linking to customized gnome 2 configuration..."
 mv ~/.gtkrc-2.0 ~/gtkrc-2.0.original

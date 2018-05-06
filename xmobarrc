@@ -13,16 +13,16 @@
 Config { 
   -- Set font and default foreground/background colors. Note that
   -- the height of xmobar is controlled by the font you use.
-  font = "xft:Ubuntu Mono-14",
+  font = "xft:Ubuntu Mono-18",
   bgColor = "black",
   fgColor = "grey",
 
-  -- Position is top left, taking up 95% of screen.
+  -- Position is top left, taking up 94% of screen.
   -- You are likely to have to tweak the width here based on the width
   -- of your screen to make it play nicely with stalonetray, which we
   -- want to be taking up the remainer of the space on the right side
   -- of your screen.
-  position = TopW L 95, 
+  position = TopW L 94, 
 
   -- list of commands which gather information about your system for
   -- presentation in the bar. 

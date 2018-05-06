@@ -13,14 +13,9 @@
 #
 
 # Empathy chat client (-h: start hidden, -n: don't connect on launch)
-if [ -z "$(pgrep empathy)" ] ; then
-    empathy -h -n &
-fi
-
-# Remmina remote desktop connection client (-i: start hidden)
-if [ -z "$(pgrep remmina)" ] ; then
-    remmina -i &
-fi
+#if [ -z "$(pgrep empathy)" ] ; then
+#    empathy -h -n &
+#fi
 
 # Network manager, so we don't have to configure wifi at the command line.
 if [ -z "$(pgrep nm-applet)" ] ; then

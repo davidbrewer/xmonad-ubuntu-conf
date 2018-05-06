@@ -101,6 +101,9 @@ gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 # xmonad related, but it's handy if you're a vim user.
 setxkbmap -option 'ctrl:nocaps'
 
+# Change the default X cursor away from the "X"
+xsetroot -cursor_name left_ptr
+
 # Now, finally, start xmonad
 exec xmonad
 

@@ -344,7 +344,7 @@ main = do
   , layoutHook = myLayouts
   , workspaces = myWorkspaces
   , modMask = myModMask
-  , handleEventHook = fullscreenEventHook
+  , handleEventHook = docksEventHook <+> fullscreenEventHook
   , startupHook = do
       setWMName "LG3D"
       windows $ W.greedyView startupWorkspace

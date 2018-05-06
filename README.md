@@ -1,16 +1,16 @@
 xmonad-ubuntu-conf
 ==================
 
-My xmonad config for Ubuntu 16.04, including package list, config files, and instructions. If you're on a different Ubuntu LTS release, take a look at the different branches available to see if there is one for you. The master branch is typically for the newest LTS.
+My xmonad config for Ubuntu 18.04, including package list, config files, and instructions. If you're on a different Ubuntu LTS release, take a look at the different branches available to see if there is one for you. The master branch is typically for the newest LTS.
 
-**Warning**: this is not yet thoroughly tested on 16.04. I was pleasantly surprised to find I didn't really need to change things much for Xenial -- we'll see if anything surfaces after I've used it for a while!
+**Warning**: this is not yet thoroughly tested on 18.04. I had to make a few minor changes for Bionic, but I have only tried it out on one machine so far. Give it a shot and let me know if it works for you!
 
 Overview
 --------
 
 What you're looking at is my personal xmonad configuration setup, heavily commented and organized as clearly as I could manage.
 
-I have been using some form of this setup on a daily basis for over five years now in my work as a web developer. An xmonad configuration usually ends up being a very individualized thing, but I thought it would be valuable to share this as a starting point for people new to xmonad. I know that when I was starting with xmonad I found reading other people's configuration files the best way to learn. I hope you will find this equally helpful.
+I have been using some form of this setup on a daily basis since 2011 in my work as a web developer. An xmonad configuration usually ends up being a very individualized thing, but I thought it would be valuable to share this as a starting point for people new to xmonad. I know that when I was starting with xmonad I found reading other people's configuration files the best way to learn. I hope you will find this equally helpful.
 
 This configuration has the following features and properties:
 * Lightweight standalone configuration, not intended to be run inside Gnome or XFCE.
@@ -36,7 +36,7 @@ Finally, this whole process is intended for someone who likes to mess with their
 
 ### Checkout repository ###
 
-As your first step, you should check out this github repository or download an archive of the files. The master branch is currently for 16.04; there are separate branches for older LTS releases of Ubuntu.
+As your first step, you should check out this github repository or download an archive of the files. The master branch is currently for 18.04; there are separate branches for older LTS releases of Ubuntu.
 
 The contents of the repository should be placed in your home directory in a folder called ".xmonad". Note that if you have already installed xmonad, this directory will already exist! If you want to be able to revert to your existing configuration, you should rename this directory to something like ".xmonad-original".
 
@@ -54,21 +54,19 @@ This xmonad configuration uses a variety of different packages. Some of them are
 
 If you want to install the entire list of packages, you can run the following command:
 
-    sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse consolekit ssh-askpass-gnome thunar terminator remmina
+    sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome
 
 If you prefer to pick and choose, the following packages can be omitted while still maintaining the overall functionality:
- * remmina
- * thunar
  * ssh-askpass-gnome
 
 ### Install customized xmonad session ###
 
-To launch our xmonad session, we want to be able to pick it from the normal list of sessions available in Ubuntu's login screen, which is called "Unity Greeter". To make our customized version of Xmonad show up in the list, you will need to copy the file xmonad.desktop to the location where the greeter expects to find definitions of all the available sessions. You might also want to back up the default xmonad desktop session in case you want to revert later on.
+To launch our xmonad session, we want to be able to pick it from the normal list of sessions available in Ubuntu's login screen. To make our customized version of Xmonad show up in the list, you will need to copy the file xmonad.desktop to the location where the greeter expects to find definitions of all the available sessions. You might also want to back up the default xmonad desktop session in case you want to revert later on.
 
     sudo mv /usr/share/xsessions/xmonad.desktop /usr/share/xsessions/xmonad.desktop.original
     sudo cp ~/.xmonad/xmonad.desktop /usr/share/xsessions
 
-Ubuntu's packages do not include any icon for xmonad when showing it in the login screen. This means its icon defaults to a plain white circle. But, no worries... I've got you covered. Just copy the custom xmonadbadge into the appropriate location for a nice consistent login experience. 
+The default session picker as of Ubuntu Bionic is GDM3. Earlier versions user "Unity Greeter". GDM3 doesn't support any kind of representative icon for your sessions, but in case you are still using Unity Greeter, I have provided a suitable icon. Just copy the custom xmonad badge into the appropriate location for a nice consistent login experience. 
 
     sudo cp ~/.xmonad/images/custom_xmonad_badge.png /usr/share/unity-greeter
 
@@ -83,11 +81,12 @@ If you don't give Gnome some hints about how it should look, anything still base
 Launching xmonad
 ----------------
 
-Once installed, xmonad will show up in the Unity greeter, where you normally choose which desktop you want to run. If you've just finished installing it:
+Once installed, xmonad will show up in GDM when you log in, where you normally choose which desktop you want to run. If you've just finished installing it:
 1. Log out.
-2. Click on the round badge next to your user name.
-3. Choose "Xmonad" from the list.
-4. Log in again.
+2. Click on your user name in the list.
+3. Click on the little gear to choose which desktop you want.
+4. Choose "Xmonad" from the list.
+5. Log in again.
 
 
 Using xmonad
@@ -100,7 +99,7 @@ In this section I provide a quick start guide to using xmonad, with an emphasis 
 When you start xmonad for the first time, you're not looking at much. You will see a status bar near the top of your screen, and that's about it.
 
 There are no menus for selecting programs to run. Everything is launched in one of two ways:
-* `mod-shift-enter`: launches a terminal window (Terminator). You can run other programs from the terminal.
+* `mod-shift-enter`: launches a terminal window. You can run other programs from the terminal.
 * `ctrl-space`: launches a Synapse prompt. You can run any program by starting to type its name, and then hitting enter once Synapse has found the program you want. 
 
 ### The status bar
@@ -340,22 +339,9 @@ Other Notes
 
 As of this writing, the current version of Synapse has a bug which prevents you from changing the activation key. You can change it, but when you quit and restart Synapse or restart you computer it will revert to the default Ctrl-Space.
 
-### Preventing Nautilus From Showing The Desktop ###
-
-When you launch Nautilus (aka "Files") in order to browse the filesystem, it activates some parts of the Gnome desktop. For the most part this is fine, but one annoying side effect is that you may find your Gnome desktop showing up, complete with its background and icons for anything in your Desktop folder. Ugh! 
-
-Luckily, there is a way to prevent this. However, if you are still using Unity or Gnome as well as Xmonad, this change will cause your desktop to disappear when in those environments too, so be aware!
-
-You'll need to change some Gnome settings using a tool called `dconf-editor`. To install and launch the tool:
-
-    sudo apt-get install dconf-tools
-    dconf-editor
-
-Once you're in `dconf-editor`, navigate to this node: org -> gnome -> desktop -> background. Then uncheck the settings "draw background" and "show desktop icons".
-
 ### GIMP 2.8 and Single Window Mode ###
 
-If you are a user of GIMP, you may have found the GIMP experience in xmonad somewhat lacking while using versions before 2.8. This is because xmonad tries to manage all your palettes as tiles which can lead to a somewhat confusing interface. However, with GIMP 2.8 (the default version in Ubuntu 14.04), single-window mode has been introduced.
+If you are a user of GIMP, you may have found the GIMP experience in xmonad somewhat lacking while using versions before 2.8. This is because xmonad tries to manage all your palettes as tiles which can lead to a somewhat confusing interface. However, with GIMP 2.8 (the default version in Ubuntu versions from 14.04 on), single-window mode has been introduced.
 
 It's highly recommended to turn single window mode on when using Gimp. In the "Windows" menu, choose "Single-Window Mode" to activate it.
 
