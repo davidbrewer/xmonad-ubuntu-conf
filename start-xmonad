@@ -7,6 +7,14 @@
 # Repository: https://github.com/davidbrewer/xmonad-ubuntu-conf
 
 #
+# KLUDGES AND WORKAROUNDS
+#
+
+# Clear xmonad.state before starting xmonad -- otherwise this causes weird
+# issues, especially when going between single screen and multi-screen
+rm -f ~/.xmonad/xmonad.state
+
+#
 # GENERAL INITIALIZATION
 #
 
@@ -28,6 +36,8 @@ xcompmgr -n &
 # SCREEN CONFIGURATION
 #
 
+STALONETRAY_ICON_SIZE=24
+
 # We handle our screen configuration using xrandr. You are likely to want to 
 # edit this section to match the specific demands of your setup. The below
 # setup is for a Lenovo W520 laptop that sometimes has an external monitor
@@ -37,16 +47,21 @@ xcompmgr -n &
 # connected screens and find out what names you should use to refer to them.
 
 # Activate primary screen 
-xrandr --output LVDS-1 --auto --primary
+xrandr --output LVDS-1-1 --auto --primary
 
 # If we find that a screen is connected via VGA, activate it and position it
 # to the left of the primary screen.
-xrandr | grep 'VGA-1 connected' | ifne xrandr --output VGA-1 --auto --left-of LVDS-1
+xrandr | grep 'VGA-1 connected' | ifne xrandr --output VGA-1 --auto --left-of LVDS-1-1
 
-# If we find that a screen is connected via DVI, activate it and position it
+# If we find that a screen is connected via Display Port, activate it and position it
 # to the left of the primary screen.
-xrandr | grep 'DP-1 connected' | ifne xrandr --output DP-1 --auto --left-of LVDS-1
+xrandr | grep 'DP-1 connected' | ifne xrandr --output DP-1 --auto --left-of LVDS-1-1
 
+# If we find a screen connected via Display Port, make it the primary screen
+# and deactivate the built-in screen...
+#xrandr | grep 'DP-1 connected' | ifne xrandr --output LVDS-1-1 --off
+#xrandr | grep 'DP-1 connected' | ifne xrandr --output DP-1 --auto --primary
+#xrandr | grep 'DP-1 connected' | ifne -n xrandr --output LVDS-1-1 --auto --primary
 
 #
 # LOAD SCREEN BACKGROUNDS
