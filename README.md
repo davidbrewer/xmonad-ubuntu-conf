@@ -18,9 +18,9 @@ This configuration has the following features and properties:
 * A restrained but useful set of layout options. I have tried to stick with simple, flexible layouts which are useful on a daily basis.
 * Basic status bar and task tray configuration using xmobar and stalonetray
 * Relies on synapse for launching applications
-* Includes tray icons for network management, chat, and remote desktop connections.
-* Adds xmonad as an option to your Unity login greeter, including a proper icon.
-* Wallpaper handling and support for basic transparency.
+* Includes tray icon for network management
+* Adds xmonad as an option to your GDM3 login greeter
+* Wallpaper handling and support for basic transparency
 
 
 Installation
@@ -113,7 +113,7 @@ The status bar can be divided into 6 major zones.  Running from left to right we
 3. The **title area**, which shows the title of the currently focused window. It's up there to save the vertical space that would normally be consumed by title bars on windows.
 4. The **system information area**, which displays a few useful pieces of system information, including: battery charge status, CPU utilization, memory usage, and current volume.
 5. The **date**.
-6. The **icon tray**, which is home to any status icons for programs you are running. By defaults you should see a network manager icon, a chat icon, and an icon for launching remote desktop connections.
+6. The **icon tray**, which is home to any status icons for programs you are running. By defaults you should see just a network manager icon. 
 
 If at any point you would like to reclaim some extra vertical space on your screen, you can toggle the visiblity of the status bar by hitting `mod-b`. 
 
@@ -133,8 +133,6 @@ There are six main layouts I have provided in my configuration:
 4. **Grid** layout tries to equally distribute windows in the available space, increasing the number of columns and rows as necessary. The master pane is at top left, but does not get priority over other windows in any other way. Not a resizeable layout.
 5. **ThreeCol** layout puts the large master pane in the center of the screen taking up most of the available screen space. Remaining windows tile to both the left and right of the master pane. This layout is resizeable. **NOTE:** I found myself using this rarely so I commented it in the xmonad.hs. To try it, uncomment the line referring to ThreeColMid in the list of layouts in xmonad.hs.
 6. **Circle** layout places the master pane in the center of the screen, with space on all sides. Remaining windows appear positioned in a circle around it, partially overlapping it. The focused window is brought to the front so you can see all of its contents. Not a resizable layout. **NOTE:** I found myself using this rarely so I commented it in the xmonad.hs. To try it, uncomment the line referring to Circle in the list of layouts in xmonad.hs. 
-
-In addition to the six main layouts, there is also a special layout called **IM Grid**, which is only activated on the Chat workspace. See the Workspaces section for more information.
 
 Now would be a good time to try out the layouts to get a sense of what they offer. Hit `mod-shift-enter` several times to launch some empty terminals, and then experiment with hitting `mod-space` to cycle through the different layouts to see what they are like.
 
@@ -194,7 +192,7 @@ Associating workspaces with number pad keys has a number of advantages:
 The twelve workspaces I use are named for the kinds of work I regularly do. I have tried to train myself to always keep certain types of work on specific workspaces, because it makes it much easier to keep track of what I'm doing and find it again if I get interrupted.
 
 You are likely to want to rename these to suit your own needs. Nevertheless, here's an explanation of what I use each workspace for in case it gives you some ideas:
-* Chat: all instant messenger sessions are launched here.
+* Chat: right now I am using this for Slack
 * Dbg: debugging. Depending on what I'm doing this may contain a terminal or a browser.
 * Pix: image manipulation; specifically, I run GIMP on this workspace.
 * Docs: documentation. I try to keep whatever docs I am referring to on this workspace.
@@ -226,7 +224,7 @@ Note that when you move a window to a workspace using numbers or the keypad, the
 #### Special workspaces
 
 There are two workspaces which have a special configuration. They are locked to a special layout, and certain programs will always spawn on those workspaces.
-* The **Chat** workspace (7) uses a special chat-focused layout called **IM Grid**. In this layout, one window is identified as the "roster" and it is displayed tall and skinny on the left side of the screen. The remaining windows, which are individual chat sessions, are displayed in a grid to the right of the roster area. This default configuration assumes you are using Empathy for your chat software, and any Empathy windows that are launched will automatically get sent to the chat workspace.
+* The **Chat** workspace (7) is where I keep my Slack session. It's configured to always use a full screen layout. In addition, any Slack windows that are launched will automatically be sent to this workspace.
 * The **Pix** workspace (9) is locked on the **ThreeCol** layout, which is especially suitable for working with GIMP because you can put the image you are working on in the master pane and let all the panels tile to the left and right of the image. Any GIMP windows that are launched will automatically be sent to this workspace.
 
 ### Multiple monitors
@@ -287,10 +285,8 @@ If you make changes to `start-xmonad`, the only way to see the changes is to log
 The `startup-hook` script runs immediately after xmonad is initialized, via the startupHook mechanism of xmonad itself. 
 
 You should take a look at editing the `startup-hook` script if you want to modify any of the software that is started by default, such as:
-* applicaiton launcher (synapse)
+* application launcher (synapse)
 * network management software
-* chat software
-* remote desktop software
 * ssh keychain unlocking prompt
 
 Note that by default I have commented out the ssh keychain unlocking prompt, assuming that this would be annoying when getting started with xmonad. If you are a heavy ssh user you might consider uncommenting that feature.
@@ -334,6 +330,19 @@ In particular I have noticed problems with machines that have more than one soun
 
 Other Notes
 -----------
+
+### Font Issues with QT4 Applications (Specifically, Zeal) ###
+
+I use a documentation browser tool called Zeal and when I started it up, my UI fonts were teensy-tiny. Turns out this is because Zeal is a Qt application, with completely separate font configuration from GTK applications. There is some kind of bug with Qt that I have not been able to work around yet.
+
+If this is a big issue for you you might want to check out the QT environment variables for scaling your application: https://doc.qt.io/qt-5/highdpi.html#high-dpi-support-in-qt
+
+Or, take a look at these related issues on Zeal's issue tracker:
+* https://github.com/zealdocs/zeal/issues/786
+* https://github.com/zealdocs/zeal/issues/869
+
+Installing and running the `qtconfig-qt4` command didn't seem to carry across to Zeal. I'm not sure why! Would appreciate any information about why this might be the case...
+
 
 ### Synapse Activation Key Bug ###
 
