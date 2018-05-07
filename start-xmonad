@@ -31,12 +31,14 @@ xrdb -merge .Xresources
 # transparency support.
 xcompmgr -n &
 
-
 #
 # SCREEN CONFIGURATION
 #
 
-STALONETRAY_ICON_SIZE=24
+# Default icon slot size for tray icons...
+# We will adjust this parameter if necessary depending on the
+# screen we end up using, to avoid gaps between xmobar and stalonetray
+STALONETRAY_SLOT_SIZE=24
 
 # We handle our screen configuration using xrandr. You are likely to want to 
 # edit this section to match the specific demands of your setup. The below
@@ -58,10 +60,13 @@ xrandr | grep 'VGA-1 connected' | ifne xrandr --output VGA-1 --auto --left-of LV
 xrandr | grep 'DP-1 connected' | ifne xrandr --output DP-1 --auto --left-of LVDS-1-1
 
 # If we find a screen connected via Display Port, make it the primary screen
-# and deactivate the built-in screen...
-#xrandr | grep 'DP-1 connected' | ifne xrandr --output LVDS-1-1 --off
-#xrandr | grep 'DP-1 connected' | ifne xrandr --output DP-1 --auto --primary
-#xrandr | grep 'DP-1 connected' | ifne -n xrandr --output LVDS-1-1 --auto --primary
+# and deactivate the built-in screen... also adjust size of icons
+#DP_1_CONNECTED=`xrandr | grep 'DP-1 connected'`
+#if [ -n "$DP_1_CONNECTED" ]; then
+#  xrandr --output LVDS-1-1 --off
+#  xrandr --output DP-1 --auto --primary
+#  STALONETRAY_SLOT_SIZE=29
+#fi
 
 #
 # LOAD SCREEN BACKGROUNDS
@@ -69,7 +74,6 @@ xrandr | grep 'DP-1 connected' | ifne xrandr --output DP-1 --auto --left-of LVDS
 
 # To set your backgrounds, run nitrogren /path/to/images
 nitrogen --restore &
-
 
 #
 # STARTUP ICON TRAY
@@ -89,7 +93,7 @@ nitrogen --restore &
 # - By setting our maximum geometry to the same thing, the tray will not grow.
 # - The background color of the tray should be black.
 # - This program should not show up in any taskbar.
-# - Icons should be set to size "24".
+# - Icons should be set to size "24". 
 # - Kludges argument of "force_icons_size" forces all icons to really, truly 
 #   be the size we set.
 # - window-strut "none" means windows are allowed to cover the tray. In
@@ -102,6 +106,7 @@ stalonetray \
   --background '#000000' \
   --skip-taskbar \
   --icon-size 24 \
+  --slot-size $STALONETRAY_SLOT_SIZE \
   --kludges force_icons_size \
   --window-strut none \
 &
