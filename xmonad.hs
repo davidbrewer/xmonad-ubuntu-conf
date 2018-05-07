@@ -29,7 +29,6 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Actions.Plane
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
-import XMonad.Hooks.ICCCMFocus
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 import Data.Ratio ((%))
@@ -337,7 +336,7 @@ main = do
   , manageHook = manageHook def
       <+> composeAll myManagementHooks
       <+> manageDocks
-  , logHook = takeTopFocus <+> dynamicLogWithPP xmobarPP {
+  , logHook = dynamicLogWithPP xmobarPP {
       ppOutput = hPutStrLn xmproc
       , ppTitle = xmobarColor myTitleColor "" . shorten myTitleLength
       , ppCurrent = xmobarColor myCurrentWSColor ""
