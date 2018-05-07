@@ -3,7 +3,7 @@ xmonad-ubuntu-conf
 
 My xmonad config for Ubuntu 18.04, including package list, config files, and instructions. If you're on a different Ubuntu LTS release, take a look at the different branches available to see if there is one for you. The master branch is typically for the newest LTS.
 
-**Warning**: this is not yet thoroughly tested on 18.04. I had to make a few minor changes for Bionic, but I have only tried it out on one machine so far. Give it a shot and let me know if it works for you!
+**Warning**: this is not yet thoroughly tested on 18.04. I had to make a few minor changes for Bionic, but I have only tried it out on one machine so far, and only in a single screen configuration. If you're on a single-screen configuration, give it a shot and let me know if it works for you! Things are still a bit... weird on multi-monitor setups.
 
 Overview
 --------
