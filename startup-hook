@@ -51,11 +51,3 @@ fi
 
 # Commented by default as it is assumed many users will not want this.
 # xinput set-button-map 10 1 0 3 4 5 6 7
-
-# I disabled my touchpad because I hate those things. You can find the id
-# of a device you want to disable using "xinput list"; unfortunately it can
-# change depending on what devices you have plugged into USB. We extract the
-# id of the device from the output of xinput, then use it to disable the
-# device
-TOUCHPAD_ID=`xinput | grep 'Synaptics TouchPad' | cut -f 2 | cut -f 2 -d =`
-xinput set-prop $TOUCHPAD_ID "Device Enabled" 0
