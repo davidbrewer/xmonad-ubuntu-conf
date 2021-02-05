@@ -63,7 +63,7 @@ This xmonad configuration uses a variety of different packages. Some of them are
 
 If you want to install the entire list of packages, you can run the following command:
 
-    sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome
+    sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome suckless-tools
 
 If you prefer to pick and choose, the following packages can be omitted while still maintaining the overall functionality:
  * ssh-askpass-gnome
@@ -262,6 +262,13 @@ Once you have a screen focused, you can use the regular workspace selection keys
 The following commands involve quitting or restarting xmonad:
 * `mod-shift-q`: quits xmonad, returning to the login screen. 
 * `mod-q`: restarts and recompiles xmonad. Does not require restarting any other programs you may be running, and happens very quickly. Very useful while experimenting with changes to your `xmonad.hs` file!
+
+### Locking your screen
+
+You can lock your screen using the following command:
+* `mod-shift-l`: runs `slock` screen locking program
+
+When the screen is locked, there won't be any interface shown for logging back in! Just type your password and hit enter to unlock the screen.
 
 Configuration
 -------------
