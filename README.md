@@ -1,9 +1,7 @@
 xmonad-ubuntu-conf
 ==================
 
-My xmonad config for Ubuntu 18.04, including package list, config files, and instructions. If you're on a different Ubuntu LTS release, take a look at the different branches available to see if there is one for you. The master branch is typically for the newest LTS.
-
-**Warning**: this is not yet thoroughly tested on 18.04. I had to make a few minor changes for Bionic, but I have only tried it out on one machine so far, and only in a single screen configuration. If you're on a single-screen configuration, give it a shot and let me know if it works for you! Things are still a bit... weird on multi-monitor setups.
+My xmonad config for Ubuntu 20.04 (Focal Fossa), including package list, config files, and instructions. If you're on a different Ubuntu LTS release, take a look at the different branches available to see if there is one for you. The master branch is typically for the newest LTS.
 
 Overview
 --------
@@ -21,6 +19,18 @@ This configuration has the following features and properties:
 * Includes tray icon for network management
 * Adds xmonad as an option to your GDM3 login greeter
 * Wallpaper handling and support for basic transparency
+
+Update Notes
+------------
+
+**Warning**: this is not thoroughly tested on 20.04. I only had to make minor updates to make it work, but I no longer regularly use it on a multi-screen configuration so I'm not able to easily test it there.
+
+OH NO! I upgraded Ubuntu and everything broke!
+----------------------------------------------
+
+Perhaps you did a dist upgade to a new version of Ubuntu, and now when you get into Xmonad everything is a little... wonky. A likely cause of this is that the Xmonad session file which runs the configuration was reset to the package default. If so, you can fix this by copying my customized version of this file back into place.
+
+    sudo cp ~/.xmonad/xmonad.desktop /usr/share/xsessions/xmonad.desktop
 
 Installation
 ------------
