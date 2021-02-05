@@ -1,0 +1,35 @@
+# We are using stalonetray to create a small icon tray at the
+# top right of the screen. You are likely to want to tweak the
+# size of the icons and the width of the tray based upon the
+# size of your screen and your xmobar configuration. The goal is
+# to make stalonetray look like it is part of xmobar.
+
+# Align icons with the "East" or right side of the tray.
+icon_gravity E
+
+# The width of the tray should be 5 icons wide by one icon tall, and it 
+# should be located 0 pixels from the right of the screen (-0) and 0 pixels
+# from the top of the screen (+0).
+geometry 5x1-0+0
+
+# By setting our maximum geometry to the same thing, the tray will not grow.
+max_geometry 5x1-0+0
+
+# The background color of the tray should be black.
+background "#000000"
+
+# This program should not show up in any taskbar.
+skip_taskbar true
+
+# Icons should be set to size "24". 
+icon_size 24
+
+# The "slot" that icons are shown in is "29" (adds padding around icons)
+slot_size 29
+
+# This kludge states: we really, truly want the icon_size we set. No really.
+kludges force_icons_size
+
+# window-strut "none" means windows are allowed to cover the tray. In
+# other words, trust xmonad to handle this part.
+window_strut none

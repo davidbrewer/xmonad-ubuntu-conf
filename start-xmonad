@@ -36,9 +36,11 @@ xcompmgr -n &
 #
 
 # Default icon slot size for tray icons...
-# We will adjust this parameter if necessary depending on the
-# screen we end up using, to avoid gaps between xmobar and stalonetray
-STALONETRAY_SLOT_SIZE=24
+# We can adjust this parameter if necessary depending on the
+# screen we end up using, to avoid gaps between xmobar and stalonetray.
+# Note that right now we use the same size either way, the need for this
+# varies depending on your screen!
+STALONETRAY_SLOT_SIZE=29
 
 # We handle our screen configuration using xrandr. You are likely to want to 
 # edit this section to match the specific demands of your setup. The below
@@ -85,30 +87,12 @@ nitrogen --restore &
 # size of your screen and your xmobar configuration. The goal is
 # to make stalonetray look like it is part of xmobar.
 # 
-# Line by line, the options used by default below mean:
-# - icons should be aligned with the "East" or right side of the tray
-# - the width of the tray should be 5 icons wide by one icon tall, and it 
-#   should be located 0 pixels from the right of the screen (-0) and 0 pixels
-#   from the top of the screen (+0).
-# - By setting our maximum geometry to the same thing, the tray will not grow.
-# - The background color of the tray should be black.
-# - This program should not show up in any taskbar.
-# - Icons should be set to size "24". 
-# - Kludges argument of "force_icons_size" forces all icons to really, truly 
-#   be the size we set.
-# - window-strut "none" means windows are allowed to cover the tray. In
-#   other words, trust xmonad to handle this part.
-#
+# Edit configuration in ~/.xmonad/stalonetrayrc if needed.
+# The one option we set here is the slot size, which you can vary
+# depending on your screen setup with STALONETRAY_SLOT_SIZE as shown above
 stalonetray \
-  --icon-gravity E \
-  --geometry 5x1-0+0 \
-  --max-geometry 5x1-0+0 \
-  --background '#000000' \
-  --skip-taskbar \
-  --icon-size 24 \
+  -c ~/.xmonad/stalonetrayrc \
   --slot-size $STALONETRAY_SLOT_SIZE \
-  --kludges force_icons_size \
-  --window-strut none \
 &
 
 # Run the gnome-keyring-daemon to avoid issues you otherwise may encounter

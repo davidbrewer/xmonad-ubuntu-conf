@@ -22,7 +22,6 @@ This configuration has the following features and properties:
 * Adds xmonad as an option to your GDM3 login greeter
 * Wallpaper handling and support for basic transparency
 
-
 Installation
 ------------
 
@@ -295,10 +294,18 @@ Note that by default I have commented out the ssh keychain unlocking prompt, ass
 
 The `xmobarrc` file is used to configure the ovreall appearance of the status bar, as well as provide part of its content. You should consider editing it if you want to make any of the following kinds of changes:
 * you want to change the font or default colors used for the bar
-* you want to change the width or position of the bar (expect to also make changes to stalonetray in the `start-xmonad` file as well in this case
+* you want to change the width or position of the bar (expect to also make changes to `stalonetrayrc` as well in this case
 * you want to change the contents or formatting of the system information and/or date which is displayed near the right side of the status bar
 
 You can see whether the changes you have made to `xmobarrc` have been effective by recompiling xmonad using `mod-q`. This typically happens very quickly. If you try this and your status bar disappears, it means you made a syntax error in your configuration file. Undo the change and hit `mod-q` again to confirm things are working again.
+
+### Editing stalonetrayrc ###
+
+The `stalonetrayrc` file is used to configure the icon tray at the top right of your screen. You should consider editing it if:
+* you want to change the color or appearance of the tray
+* you need to tweak it to align it better with xmobar, or to prevent it from overlapping xmobar
+* you need to display more (or fewer) icons in the tray
+* You want to change the size of the icons
 
 ### Editing xmonad.hs ###
 
