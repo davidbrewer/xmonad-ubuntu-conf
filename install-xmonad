@@ -18,7 +18,11 @@
 # Author: David Brewer
 
 echo "Installing required packages..."
-sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome suckless-tools
+sudo apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome suckless-tools brightnessctl
+
+# If brightnessctl does not work, you may need to add your username to the
+# video group to give it permission. Then you may need to log out and back in.
+# sudo gpasswd -a <user_name> video
 
 echo "Creating xmonad xsession configuration..."
 if [ -f "/usr/share/xsessions/xmonad.desktop" ] ; then
